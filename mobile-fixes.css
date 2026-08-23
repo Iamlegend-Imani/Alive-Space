@@ -1,0 +1,17 @@
+@media (max-width:760px){
+  .topbar{padding:.8rem .7rem;gap:.45rem}
+  .brand{gap:.5rem;min-width:0}
+  .brand-mark{width:34px;height:34px;flex:0 0 34px}
+  .brand-text{display:grid;min-width:0}
+  .brand-text strong{font-size:.78rem;white-space:nowrap}
+  .brand-text small{display:none}
+  .top-actions{gap:.35rem;flex-shrink:0}
+  .ghost-button{width:auto!important;min-width:0;height:38px;padding:0 .62rem!important;justify-content:center;gap:.35rem}
+  .button-label{display:inline!important;font-size:.64rem;white-space:nowrap}
+  .icon{font-size:.78rem}
+}
+@media (max-width:390px){
+  .ghost-button{padding:0 .5rem!important}
+  .button-label{font-size:.59rem}
+  .brand-text strong{font-size:.72rem}
+}
