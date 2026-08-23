@@ -11,128 +11,87 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body data-atmosphere="forest" data-state="stillness" data-theme="night">
+<body data-atmosphere="forest" data-state="stillness" data-theme="night" data-field-mode="center">
   <div class="world" aria-hidden="true">
-    <div class="world-gradient"></div>
-    <div class="world-veil"></div>
-    <div class="world-haze haze-a"></div>
-    <div class="world-haze haze-b"></div>
-    <div class="world-haze haze-c"></div>
-    <div class="horizon-glow"></div>
+    <div class="world-gradient"></div><div class="world-veil"></div><div class="horizon-glow"></div>
+    <div class="world-haze haze-a"></div><div class="world-haze haze-b"></div><div class="world-haze haze-c"></div>
     <canvas id="ambient-canvas"></canvas>
 
     <div class="quiet-field" id="quiet-field">
-      <div class="field-aura aura-1"></div>
-      <div class="field-aura aura-2"></div>
-      <svg viewBox="0 0 600 600" role="presentation">
-        <defs>
-          <radialGradient id="coreGlow" cx="42%" cy="34%" r="70%">
-            <stop offset="0" stop-color="currentColor" stop-opacity="1" />
-            <stop offset=".18" stop-color="currentColor" stop-opacity=".62" />
-            <stop offset=".62" stop-color="currentColor" stop-opacity=".08" />
-            <stop offset="1" stop-color="currentColor" stop-opacity="0" />
-          </radialGradient>
-        </defs>
-        <circle class="field-ring ring-1" cx="300" cy="300" r="250" />
-        <circle class="field-ring ring-2" cx="300" cy="300" r="210" />
-        <circle class="field-ring ring-3" cx="300" cy="300" r="165" />
-        <circle class="field-ring ring-4" cx="300" cy="300" r="118" />
-        <path class="field-line line-1" d="M300 52 L515 176 L515 424 L300 548 L85 424 L85 176 Z" />
-        <path class="field-line line-2" d="M300 52 L300 548 M85 176 L515 424 M515 176 L85 424" />
-        <path class="field-line line-3" d="M155 112 C260 185 340 185 445 112 M155 488 C260 415 340 415 445 488" />
-        <circle class="field-glow" cx="300" cy="300" r="132" fill="url(#coreGlow)" />
+      <div class="field-aura aura-1"></div><div class="field-aura aura-2"></div>
+      <svg class="metatron" viewBox="0 0 600 600" role="presentation">
+        <g class="metatron-outer">
+          <circle class="sacred-circle c0" cx="300" cy="300" r="238"/>
+          <circle class="sacred-circle" cx="300" cy="180" r="78"/><circle class="sacred-circle" cx="404" cy="240" r="78"/>
+          <circle class="sacred-circle" cx="404" cy="360" r="78"/><circle class="sacred-circle" cx="300" cy="420" r="78"/>
+          <circle class="sacred-circle" cx="196" cy="360" r="78"/><circle class="sacred-circle" cx="196" cy="240" r="78"/>
+        </g>
+        <g class="metatron-inner">
+          <circle class="sacred-circle" cx="300" cy="300" r="78"/>
+          <circle class="sacred-circle" cx="300" cy="240" r="55"/><circle class="sacred-circle" cx="352" cy="270" r="55"/>
+          <circle class="sacred-circle" cx="352" cy="330" r="55"/><circle class="sacred-circle" cx="300" cy="360" r="55"/>
+          <circle class="sacred-circle" cx="248" cy="330" r="55"/><circle class="sacred-circle" cx="248" cy="270" r="55"/>
+        </g>
+        <g class="metatron-lines">
+          <path d="M300 102 L472 201 L472 399 L300 498 L128 399 L128 201 Z"/>
+          <path d="M300 102 L300 498 M128 201 L472 399 M472 201 L128 399"/>
+          <path d="M196 240 L404 240 L404 360 L196 360 Z M300 180 L404 360 L196 360 Z M300 420 L404 240 L196 240 Z"/>
+        </g>
+        <circle class="field-glow" cx="300" cy="300" r="118"/>
       </svg>
-      <div class="field-core">
-        <span class="core-orb"></span>
-        <span class="core-word">alive</span>
-        <span class="core-sub">quiet field</span>
-      </div>
+      <div class="orbital-dots"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="field-core"><span class="core-orb"></span><span class="core-word">alive</span><span class="core-sub">quiet field</span></div>
     </div>
   </div>
 
   <div id="brightness-overlay" aria-hidden="true"></div>
-
   <header class="topbar">
-    <a class="brand" href="#" aria-label="Alive Space home">
-      <span class="brand-mark"><span></span></span>
-      <span class="brand-text"><strong>Alive Space</strong><small>Alive Systems Lab</small></span>
-    </a>
+    <a class="brand" href="#"><span class="brand-mark"><span></span></span><span class="brand-text"><strong>Alive Space</strong><small>Alive Systems Lab</small></span></a>
     <div class="top-actions">
       <button class="ghost-button" id="sound-toggle" type="button" aria-pressed="false"><span class="icon">◌</span><span class="button-label">sound off</span></button>
-      <button class="ghost-button" id="controls-toggle" type="button" aria-expanded="false" aria-controls="control-dock"><span class="icon">⌁</span><span class="button-label">shape space</span></button>
+      <button class="ghost-button" id="controls-toggle" type="button" aria-expanded="false"><span class="icon">⌁</span><span class="button-label">shape space</span></button>
     </div>
   </header>
 
   <main class="experience">
-    <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+    <section class="welcome" id="welcome">
       <p class="overline">a quieter place on the internet</p>
-      <h1 id="welcome-title">How does the world feel right now?</h1>
+      <h1>How does the world feel right now?</h1>
       <p class="intro-copy">Choose what feels closest. The space will meet you there.</p>
-      <div class="feeling-grid" role="group" aria-label="Choose how the world feels right now">
-        <button data-feeling="bright">Too bright</button>
-        <button data-feeling="loud">Too loud</button>
-        <button data-feeling="fast">Too fast</button>
-        <button data-feeling="head">Too much in my head</button>
-        <button data-feeling="restless">I feel restless</button>
-        <button data-feeling="quiet">I just want somewhere quiet</button>
+      <div class="feeling-grid">
+        <button data-feeling="bright">Too bright</button><button data-feeling="loud">Too loud</button>
+        <button data-feeling="fast">Too fast</button><button data-feeling="head">Too much in my head</button>
+        <button data-feeling="restless">I feel restless</button><button data-feeling="quiet">I just want somewhere quiet</button>
       </div>
-      <button class="text-button" id="skip-button" type="button">or enter the Quiet Field</button>
+      <button class="text-button" id="skip-button">or enter the Quiet Field</button>
     </section>
 
     <section class="presence-card hidden" id="presence-card" aria-live="polite">
-      <div class="presence-copy-wrap">
-        <p class="overline" id="presence-label">Forest · Stillness</p>
-        <h2 id="presence-title">Nothing needs your attention here.</h2>
-        <p id="presence-copy">Stay for a moment. Let the screen be quiet with you.</p>
-      </div>
-      <div class="presence-actions">
-        <button class="breath-button" id="breath-button" type="button" aria-pressed="false">breathe with the field</button>
-        <button class="text-button" id="choose-button" type="button">choose atmosphere + state</button>
-      </div>
+      <p class="overline" id="presence-label">Forest · Stillness</p>
+      <h2 id="presence-title">Nothing needs your attention here.</h2>
+      <p id="presence-copy">Stay for a moment. Let the screen be quiet with you.</p>
+      <div class="presence-actions"><button class="breath-button" id="breath-button">breathe with the field</button><button class="text-button" id="choose-button">choose atmosphere + state</button></div>
     </section>
   </main>
 
-  <aside class="control-dock" id="control-dock" aria-label="Alive Space controls" aria-hidden="true">
-    <div class="dock-head">
-      <div><p class="overline">your space</p><h2>Shape the atmosphere.</h2></div>
-      <button class="close-button" id="controls-close" type="button" aria-label="Close controls">×</button>
-    </div>
-
-    <div class="now-playing" id="now-playing">
-      <span class="now-dot"></span>
-      <div><small>soundscape</small><strong id="soundscape-name">Forest Resonance</strong></div>
-      <span class="now-status" id="sound-status">silent</span>
-    </div>
-
-    <div class="dock-section">
-      <div class="section-label"><span>Atmosphere</span><small>where</small></div>
-      <div class="chip-grid" id="atmosphere-grid">
-        <button class="choice-chip active" data-atmosphere="forest">Forest</button><button class="choice-chip" data-atmosphere="ether">Ether</button><button class="choice-chip" data-atmosphere="water">Water</button><button class="choice-chip" data-atmosphere="night">Night</button><button class="choice-chip" data-atmosphere="dawn">Dawn</button><button class="choice-chip" data-atmosphere="rain">Rain</button><button class="choice-chip" data-atmosphere="firelight">Firelight</button><button class="choice-chip" data-atmosphere="flow">Flow</button><button class="choice-chip" data-atmosphere="earth">Earth</button><button class="choice-chip" data-atmosphere="air">Air</button><button class="choice-chip" data-atmosphere="wind">Wind</button>
-      </div>
-    </div>
-
-    <div class="dock-section">
-      <div class="section-label"><span>State</span><small>how</small></div>
-      <div class="chip-grid" id="state-grid">
-        <button class="choice-chip active" data-state="stillness">Stillness</button><button class="choice-chip" data-state="groundedness">Groundedness</button><button class="choice-chip" data-state="breath">Breath</button><button class="choice-chip" data-state="drift">Drift</button><button class="choice-chip" data-state="focus">Focus</button><button class="choice-chip" data-state="samadhi">Samadhi</button><button class="choice-chip" data-state="enlightenment">Enlightenment</button><button class="choice-chip" data-state="softness">Softness</button><button class="choice-chip" data-state="release">Release</button><button class="choice-chip" data-state="presence">Presence</button><button class="choice-chip" data-state="wonder">Wonder</button><button class="choice-chip" data-state="rest">Rest</button>
-      </div>
-    </div>
-
+  <aside class="control-dock" id="control-dock" aria-hidden="true">
+    <div class="dock-head"><div><p class="overline">your space</p><h2>Shape the atmosphere.</h2></div><button class="close-button" id="controls-close">×</button></div>
+    <div class="now-playing"><span class="now-dot"></span><div><small>soundscape</small><strong id="soundscape-name">Forest · Stillness</strong></div><span class="now-status" id="sound-status">silent</span></div>
+    <div class="dock-section"><div class="section-label"><span>Atmosphere</span><small>where</small></div><div class="chip-grid" id="atmosphere-grid">
+      <button class="choice-chip active" data-atmosphere="forest">Forest</button><button class="choice-chip" data-atmosphere="ether">Ether</button><button class="choice-chip" data-atmosphere="water">Water</button><button class="choice-chip" data-atmosphere="night">Night</button><button class="choice-chip" data-atmosphere="dawn">Dawn</button><button class="choice-chip" data-atmosphere="rain">Rain</button><button class="choice-chip" data-atmosphere="firelight">Firelight</button><button class="choice-chip" data-atmosphere="flow">Flow</button><button class="choice-chip" data-atmosphere="earth">Earth</button><button class="choice-chip" data-atmosphere="air">Air</button><button class="choice-chip" data-atmosphere="wind">Wind</button>
+    </div></div>
+    <div class="dock-section"><div class="section-label"><span>State</span><small>how</small></div><div class="chip-grid" id="state-grid">
+      <button class="choice-chip active" data-state="stillness">Stillness</button><button class="choice-chip" data-state="groundedness">Groundedness</button><button class="choice-chip" data-state="breath">Breath</button><button class="choice-chip" data-state="drift">Drift</button><button class="choice-chip" data-state="focus">Focus</button><button class="choice-chip" data-state="samadhi">Samadhi</button><button class="choice-chip" data-state="enlightenment">Enlightenment</button><button class="choice-chip" data-state="softness">Softness</button><button class="choice-chip" data-state="release">Release</button><button class="choice-chip" data-state="presence">Presence</button><button class="choice-chip" data-state="wonder">Wonder</button><button class="choice-chip" data-state="rest">Rest</button>
+    </div></div>
     <div class="dock-section sliders">
-      <label><span>Brightness <small id="brightness-value">82%</small></span><input id="brightness" type="range" min="40" max="110" value="82" /></label>
-      <label><span>Movement <small id="motion-value">alive</small></span><input id="motion" type="range" min="0" max="100" value="44" /></label>
-      <label><span>Sound <small id="sound-value">soft</small></span><input id="volume" type="range" min="0" max="100" value="28" /></label>
+      <label><span>Brightness <small id="brightness-value">82%</small></span><input id="brightness" type="range" min="40" max="110" value="82"></label>
+      <label><span>Field pace <small id="motion-value">alive</small></span><input id="motion" type="range" min="0" max="100" value="44"></label>
+      <label><span>Sound <small id="sound-value">soft</small></span><input id="volume" type="range" min="0" max="100" value="28"></label>
     </div>
-
-    <div class="dock-section mini-actions">
-      <button id="theme-toggle">Day / night</button>
-      <button id="reduce-button" aria-pressed="false">Make it quieter</button>
-      <button id="reset-button">Reset</button>
-    </div>
-
-    <p class="dock-note">Sound is opt-in because browsers and sensory-first design both require a deliberate first touch. Once enabled, each atmosphere generates its own continuous ambient composition.</p>
+    <div class="dock-section segmented"><span>Light</span><div><button class="segment" data-theme-choice="day">Day</button><button class="segment active" data-theme-choice="night">Night</button></div></div>
+    <div class="dock-section segmented"><span>Field movement</span><div><button class="segment active" data-field-choice="center">Centered</button><button class="segment" data-field-choice="drift">Drift</button></div></div>
+    <div class="dock-section mini-actions"><button id="reduce-button">Make it quieter</button><button id="reset-button">Reset</button></div>
   </aside>
-
   <footer class="footer-note"><span>Alive Space</span><span>Enter the Quiet Field</span></footer>
   <script src="script.js"></script>
 </body>
