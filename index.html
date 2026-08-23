@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#07110d" />
+  <meta name="description" content="Alive Space — a quieter place on the internet. Enter the Quiet Field." />
+  <title>Alive Space — A quieter place on the internet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-atmosphere="forest" data-state="stillness" data-theme="night">
+  <div class="world" aria-hidden="true">
+    <div class="world-gradient"></div>
+    <div class="world-haze haze-a"></div>
+    <div class="world-haze haze-b"></div>
+    <div class="world-grain"></div>
+    <canvas id="ambient-canvas"></canvas>
+
+    <div class="quiet-field" id="quiet-field">
+      <svg viewBox="0 0 600 600" role="presentation">
+        <defs>
+          <radialGradient id="coreGlow" cx="42%" cy="34%" r="70%">
+            <stop offset="0" stop-color="currentColor" stop-opacity=".95" />
+            <stop offset=".18" stop-color="currentColor" stop-opacity=".55" />
+            <stop offset=".6" stop-color="currentColor" stop-opacity=".08" />
+            <stop offset="1" stop-color="currentColor" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <circle class="field-ring ring-1" cx="300" cy="300" r="235" />
+        <circle class="field-ring ring-2" cx="300" cy="300" r="183" />
+        <circle class="field-ring ring-3" cx="300" cy="300" r="125" />
+        <path class="field-line line-1" d="M300 64 L504 182 L504 418 L300 536 L96 418 L96 182 Z" />
+        <path class="field-line line-2" d="M300 64 L300 536 M96 182 L504 418 M504 182 L96 418" />
+        <circle class="field-glow" cx="300" cy="300" r="112" fill="url(#coreGlow)" />
+      </svg>
+      <div class="field-core">
+        <span class="core-orb"></span>
+        <span class="core-word">alive</span>
+        <span class="core-sub">quiet field</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="brightness-overlay" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Alive Space home">
+      <span class="brand-mark"><span></span></span>
+      <span class="brand-text"><strong>Alive Space</strong><small>Alive Systems Lab</small></span>
+    </a>
+    <div class="top-actions">
+      <button class="ghost-button" id="sound-toggle" type="button" aria-pressed="false"><span class="icon">◌</span><span class="button-label">sound off</span></button>
+      <button class="ghost-button" id="controls-toggle" type="button" aria-expanded="false" aria-controls="control-dock"><span class="icon">⌁</span><span class="button-label">adjust space</span></button>
+    </div>
+  </header>
+
+  <main class="experience">
+    <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+      <p class="overline">a quieter place on the internet</p>
+      <h1 id="welcome-title">How does the world feel right now?</h1>
+      <div class="feeling-grid" role="group" aria-label="Choose how the world feels right now">
+        <button data-feeling="bright">Too bright</button>
+        <button data-feeling="loud">Too loud</button>
+        <button data-feeling="fast">Too fast</button>
+        <button data-feeling="head">Too much in my head</button>
+        <button data-feeling="restless">I feel restless</button>
+        <button data-feeling="quiet">I just want somewhere quiet</button>
+      </div>
+      <button class="text-button" id="skip-button" type="button">or enter without choosing</button>
+    </section>
+
+    <section class="presence-card hidden" id="presence-card" aria-live="polite">
+      <p class="overline" id="presence-label">Forest · Stillness</p>
+      <h2 id="presence-title">Nothing needs your attention here.</h2>
+      <p id="presence-copy">Stay for a moment. Let the screen be quiet with you.</p>
+      <div class="presence-actions">
+        <button class="breath-button" id="breath-button" type="button" aria-pressed="false">breathe with the field</button>
+        <button class="text-button" id="choose-button" type="button">choose my space</button>
+      </div>
+    </section>
+  </main>
+
+  <aside class="control-dock" id="control-dock" aria-label="Alive Space controls" aria-hidden="true">
+    <div class="dock-head">
+      <div><p class="overline">your space</p><h2>Adjust only what you need.</h2></div>
+      <button class="close-button" id="controls-close" type="button" aria-label="Close controls">×</button>
+    </div>
+
+    <div class="dock-section">
+      <div class="section-label"><span>Atmosphere</span><small>where</small></div>
+      <div class="chip-grid" id="atmosphere-grid">
+        <button class="choice-chip active" data-atmosphere="forest">Forest</button><button class="choice-chip" data-atmosphere="ether">Ether</button><button class="choice-chip" data-atmosphere="water">Water</button><button class="choice-chip" data-atmosphere="night">Night</button><button class="choice-chip" data-atmosphere="dawn">Dawn</button><button class="choice-chip" data-atmosphere="rain">Rain</button><button class="choice-chip" data-atmosphere="firelight">Firelight</button><button class="choice-chip" data-atmosphere="flow">Flow</button><button class="choice-chip" data-atmosphere="earth">Earth</button><button class="choice-chip" data-atmosphere="air">Air</button><button class="choice-chip" data-atmosphere="wind">Wind</button>
+      </div>
+    </div>
+
+    <div class="dock-section">
+      <div class="section-label"><span>State</span><small>how</small></div>
+      <div class="chip-grid" id="state-grid">
+        <button class="choice-chip active" data-state="stillness">Stillness</button><button class="choice-chip" data-state="groundedness">Groundedness</button><button class="choice-chip" data-state="breath">Breath</button><button class="choice-chip" data-state="drift">Drift</button><button class="choice-chip" data-state="focus">Focus</button><button class="choice-chip" data-state="samadhi">Samadhi</button><button class="choice-chip" data-state="enlightenment">Enlightenment</button><button class="choice-chip" data-state="softness">Softness</button><button class="choice-chip" data-state="release">Release</button><button class="choice-chip" data-state="presence">Presence</button><button class="choice-chip" data-state="wonder">Wonder</button><button class="choice-chip" data-state="rest">Rest</button>
+      </div>
+    </div>
+
+    <div class="dock-section sliders">
+      <label><span>Brightness <small id="brightness-value">82%</small></span><input id="brightness" type="range" min="40" max="110" value="82" /></label>
+      <label><span>Motion <small id="motion-value">low</small></span><input id="motion" type="range" min="0" max="100" value="28" /></label>
+      <label><span>Sound <small id="sound-value">silent</small></span><input id="volume" type="range" min="0" max="100" value="18" /></label>
+    </div>
+
+    <div class="dock-section mini-actions">
+      <button id="theme-toggle">Day / night</button>
+      <button id="reduce-button" aria-pressed="false">Make it quieter</button>
+      <button id="reset-button">Reset</button>
+    </div>
+
+    <p class="dock-note">Alive Space is a sensory-first digital environment designed for calm, sensory comfort, decompression, stillness, and low cognitive demand. It does not diagnose or treat medical conditions.</p>
+  </aside>
+
+  <footer class="footer-note"><span>Alive Space</span><span>Enter the Quiet Field</span></footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
